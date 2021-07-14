@@ -8,12 +8,13 @@ class JsonStorage:
 
     Arguments:
         project_root: the project root; this to make the class as generic as possible.
-        json_directory_under_root: the location of the Json folder the file is in under the project root.
+        json_directory_under_root: the location of the Json folder the file is in under the project root. Without '\'
+                        can be either a path or string
     """
     def __init__(self, project_root, json_directory_under_root):
         self.project_root = str(project_root)
         self.folder_location_specified = str(json_directory_under_root)
-        self.json_directory = (self.project_root + self.folder_location_specified)
+        self.json_directory = Path(self.project_root, self.folder_location_specified)
 
     def read_json_file(self, file_name):
         """
